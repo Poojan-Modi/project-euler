@@ -1,0 +1,20 @@
+# Build artifacts
+*.exe
+*.obj
+*.o
+*.out
+*.log
+
+# VS Code settings
+.vscode/
+
+# Temporary files
+temp_exercise
+*.tmp
+
+# OS generated files
+Thumbs.db
+Desktop.ini
+
+# Other
+*.bak
