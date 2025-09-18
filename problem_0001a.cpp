@@ -13,7 +13,7 @@
 
 #include <iostream>
 
-#define N 10000
+#define N 1000
 #define A 3
 #define B 5
 
@@ -25,7 +25,7 @@ int sumOfMultiples(int x)
 
 int main()
 {
-    int sum = sumOfMultiples(3) + sumOfMultiples(5);
+    int sum = sumOfMultiples(3) + sumOfMultiples(5) - sumOfMultiples(15);
     std::cout << "Optimized sum of multiples of 3 or 5 below " << N << ": " << sum << "\n";
     return 0;
 }
