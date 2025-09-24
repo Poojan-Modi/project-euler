@@ -1,21 +1,35 @@
+# Python environment
+.venv/
+__pycache__/
+*.pyc
+.Python
+env/
+
 # Build artifacts
 *.exe
 *.obj
 *.o
 *.out
+*.app
 *.log
 
-# VS Code settings
+# IDE settings
 .vscode/
+.idea/
+*.swp
+*.swo
 
 # Temporary files
 temp_exercise
 *.tmp
+*.bak
 
 # OS generated files
+.DS_Store
 Thumbs.db
 Desktop.ini
+.directory
 
-# Other
-*.bak
+# Logs and data
 cpp_run_log.txt
+*.log
