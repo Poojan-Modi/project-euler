@@ -4,10 +4,12 @@
   * 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
   * What is the smallest positive number that is evenly divisible with no remainder by all of the numbers from 1 to 20?
   *
-  * Solution:
+  * Solution: Factorization Method
   * find the factors of all the numbers from 20...1 (1 can technically be skiped)
   * factors that have been found don't need to be done again
   *
+  * Time Complexity: O(k^(3/2))
+  * Space COmplexity: O(k)
   */
 
 #include <iostream>
