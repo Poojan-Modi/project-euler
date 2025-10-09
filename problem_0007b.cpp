@@ -9,7 +9,8 @@ Solution:
     Modified Sieve of Eratosthenes method
 
 Code Complexity:
-
+    ime: O(n log log n)
+    Space: O(n)
 */
 
 #include <iostream>
