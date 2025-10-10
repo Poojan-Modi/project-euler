@@ -33,3 +33,20 @@ Desktop.ini
 # Logs and data
 cpp_run_log.txt
 *.log
+
+# C++ source and build folders
+/build/
+/bin/
+/lib/
+/src/
+/include/
+/problems/
+
+# CMake files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+
+# Executables
+*.exe
+*.out
