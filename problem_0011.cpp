@@ -96,10 +96,11 @@ int main()
             int dProdR = multiplyDiagonalRight(i, j);
             int dProdL = multiplyDiagonalLeft(i, j);
 
-            lrgProd = std::max({lrgProd, hProd, vProd, dProdR, dProdL});
+            lrgProd = std::max(lrgProd, std::max(hProd, std::max(vProd, std::max(dProdR, dProdL))));
         }
     }
 
     std::cout << "Largest Product = " << lrgProd << "\n";
     return 0;
 }
+
