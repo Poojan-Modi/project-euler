@@ -39,9 +39,27 @@ Space	            O(n²)       ->  grid store
 constexpr int GRID_SIZE{20};
 constexpr int ADJ_COUNT{4};
 
+constexpr int directions[4][2]{
+    {0, 1}, // horizontal
+    {1, 0}, // vertical
+    {1, 1}, // diagonal left
+    {1, -1} // diagonal right
+};
+
 long long product(int arr[GRID_SIZE][GRID_SIZE], int i, int j, int dx, int dy)
 {
-    return arr[i][j] * arr[i + dx][j + dy] * arr[i + 2 * dx][j + 2 * dy] * arr[i + 3 * dx][j + 3 * dy];
+    for (int k{0}; k < ADJ_COUNT; ++k)
+    {
+        int x = i + k * dx;
+        int y = j + k * dy;
+        if (x < 0 || x >= GRID_SIZE || y >= GRID_SIZE)
+            return 0;
+    }
+
+    return static_cast<long long>(arr[i][j] *
+                                  arr[i + dx][j + dy] *
+                                  arr[i + 2 * dx][j + 2 * dy] *
+                                  arr[i + 3 * dx][j + 3 * dy]);
 }
 
 int main()
@@ -77,17 +95,8 @@ int main()
     {
         for (int j = 0; j < GRID_SIZE; ++j)
         {
-            if (j + ADJ_COUNT <= GRID_SIZE)
-                lrgProd = std::max(lrgProd, product(arr, i, j, 0, 1)); // horizontal
-
-            if (i + ADJ_COUNT <= GRID_SIZE)
-                lrgProd = std::max(lrgProd, product(arr, i, j, 1, 0)); // vertical
-
-            if (i + ADJ_COUNT <= GRID_SIZE && j + ADJ_COUNT <= GRID_SIZE)
-                lrgProd = std::max(lrgProd, product(arr, i, j, 1, 1)); // diagonal right
-
-            if (i + ADJ_COUNT <= GRID_SIZE && j - ADJ_COUNT + 1 >= 0)
-                lrgProd = std::max(lrgProd, product(arr, i, j, 1, -1)); // diagonal left
+            for (auto &dir : directions)
+                lrgProd = std::max(lrgProd, product(arr, i, j, dir[0], dir[1]));
         }
     }
 
