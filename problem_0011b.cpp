@@ -6,9 +6,8 @@ Task
 Write a program to compute the largest product of four adjacent numbers in the same direction within a 20×20 grid.
 
 Complexity
-Time (sequential)	O(n²)       ->  Double Loops
-Time (parallel)	    O(n² / p)   ->  Double Loops in parallel process
-Space	            O(n²)       ->  grid store
+Time: O(n²) depending on how many directions and positions are checked
+Space: O(n²) for storing the grid
 
 08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
@@ -36,8 +35,9 @@ Space	            O(n²)       ->  grid store
 #include <iostream>
 #include <omp.h>
 
-constexpr int GRID_SIZE{20};
-constexpr int ADJ_COUNT{4};
+
+constexpr int GRID_SIZE {20};
+constexpr int ADJ_COUNT {4};
 
 long long product(int arr[GRID_SIZE][GRID_SIZE], int i, int j, int dx, int dy)
 {
@@ -70,9 +70,9 @@ int main()
         {20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54},
         {1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48}};
 
-    long long lrgProd{0};
+    long long lrgProd {0}, hProd {0}, vProd {0}, dProdR {0}, dProdL {0};
 
-#pragma omp parallel for collapse(2) reduction(max : lrgProd)
+    #pragma omp parallel for collapse(2) reduction(max:lrgProd)
     for (int i = 0; i < GRID_SIZE; ++i)
     {
         for (int j = 0; j < GRID_SIZE; ++j)
@@ -97,3 +97,4 @@ int main()
     std::cout << "Execution Time: " << (end - start) << " seconds\n";
     return 0;
 }
+
