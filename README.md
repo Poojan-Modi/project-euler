@@ -5,68 +5,73 @@ I'm using this project to improve my algorithmic thinking and C++ skills as part
 
 ## 📁 Project Structure
 
-- Each solution is in the project root directory, following the naming convention:
-  - Main solutions: `problem_XXXX.cpp` (e.g., `problem_0001.cpp`)
-  - Alternative solutions: `problem_XXXXa.cpp`, `problem_XXXXb.cpp`, etc.
-- `run.py`: Interactive Python script for compiling and running solutions
-- `cpp_run_log.txt`: Compilation and execution logs
+```
+project-euler/
+├── src/                    # Source files
+│   └── problems/           # Problem solutions
+├── include/                # Header files
+├── build/                  # Build directory
+├── .vscode/                # VS Code configuration
+├── CMakeLists.txt          # CMake configuration
+└── README.md
+```
 
 ## 🛠️ Requirements
 
-- C++ Compiler (g++)
-- Python 3.x
-- Required Python packages:
-  - colorama (automatically installed when running the script)
+- CMake (3.10 or higher)
+- C++23 compliant compiler
+- OpenMP support (automatically installed)
+- VS Code with C/C++ extension
 
 ## 🚀 Getting Started
 
-1. Clone the repository:
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/Poojan-Modi/project-euler.git
    cd project-euler
    ```
 
-2. Run solutions using the interactive Python script:
+2. **Install Dependencies (macOS):**
    ```bash
-   python run.py
+   brew install cmake
+   brew install libomp
    ```
 
-   The script will:
-   - Show a colored, interactive menu of available solutions
-   - Compile and run your chosen solution
-   - Display real-time progress with visual indicators
-   - Show execution statistics with time distribution charts
-   - Automatically clean up build artifacts
+3. **Build the project:**
+   - Using VS Code:
+     - Press `Cmd+Shift+B` to build
+     - Select "Run Problem" from Command Palette to execute
+   
+   - Using Terminal:
+     ```bash
+     mkdir -p build
+     cd build
+     cmake ..
+     make
+     ```
 
-## 💻 Run Script Features
+## 💻 VS Code Tasks
 
-The `run.py` script provides:
+The project includes preconfigured VS Code tasks:
 
-- 🎨 **Colored Interface**: Easy-to-read, color-coded output
-- 📊 **Visual Progress**:
-  - Real-time compilation and execution progress
-  - Time distribution visualization
-  - Performance statistics
-- 🔍 **Detailed Output**:
-  - Compilation status and errors
-  - Execution time analysis
-  - Memory usage statistics
-- 🧹 **Automatic Cleanup**: Removes executables after running
+- **Build Project** (`Cmd+Shift+B`): Builds all solutions
+- **Clean Build**: Removes and rebuilds everything
+- **Run Problem**: Executes a specific problem solution
 
-## 📝 Logging
+## 🔧 Building and Running
 
-All operations are logged in `cpp_run_log.txt`, including:
-- Compilation times and status
-- Execution times
-- Executable sizes
-- Error messages (if any)
+### Using VS Code:
+1. Press `Cmd+Shift+B` to build
+2. `Cmd+Shift+P` → "Tasks: Run Task" → "Run Problem"
+3. Enter the problem number (e.g., "0004")
 
-## 🔧 Manual Compilation
-
-If you prefer to compile manually:
-
+### Using Terminal:
 ```bash
-g++ problem_XXXX.cpp -o problem_XXXX
+# Build specific problem
+cd build
+make problem_XXXX
+
+# Run specific problem
 ./problem_XXXX
 ```
 
@@ -74,24 +79,33 @@ g++ problem_XXXX.cpp -o problem_XXXX
 
 To add a new solution:
 
-1. Create a new file named `problem_XXXX.cpp`
-2. Include problem description and approach in comments
-3. Implement your solution
-4. Run using `python run.py`
+1. Create `src/problems/problem_XXXX.cpp`
+2. Include problem description and approach
+3. Build using CMake
+4. Run using VS Code tasks or terminal
 
 ## 🎯 Best Practices
 
-- Include problem description in comments
-- Document your approach and complexity analysis
-- Consider multiple solutions (a, b variants) for optimization
-- Use appropriate data structures and algorithms
-- Test with example cases before submitting
+- Document problem description and approach
+- Use OpenMP for parallel processing when applicable
+- Follow C++23 best practices
+- Include performance considerations
+- Add test cases in comments
+
+## 🔍 Features
+
+- C++23 support
+- OpenMP parallel processing
+- CMake build system
+- VS Code integration
+- Automatic dependency management
 
 ## 📚 Resources
 
-- [Project Euler Official Website](https://projecteuler.net/)
+- [Project Euler](https://projecteuler.net/)
 - [C++ Reference](https://en.cppreference.com/)
-- [Algorithm Complexity Guide](https://www.bigocheatsheet.com/)
+- [CMake Documentation](https://cmake.org/documentation/)
+- [OpenMP Documentation](https://www.openmp.org/specifications/)
 
 ---
 
