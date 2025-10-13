@@ -91,16 +91,13 @@ int main()
     {
         for (int j = 0; j < 20; ++j)
         {
-            int hProd = multiplyHorizontal(i, j);
-            int vProd = multiplyVertical(i, j);
-            int dProdR = multiplyDiagonalRight(i, j);
-            int dProdL = multiplyDiagonalLeft(i, j);
-
-            lrgProd = std::max(lrgProd, std::max(hProd, std::max(vProd, std::max(dProdR, dProdL))));
+            lrgProd = std::max(lrgProd, multiplyHorizontal(i, j));
+            lrgProd = std::max(lrgProd, multiplyVertical(i, j));
+            lrgProd = std::max(lrgProd, multiplyDiagonalRight(i, j));
+            lrgProd = std::max(lrgProd, multiplyDiagonalLeft(i, j));
         }
     }
 
     std::cout << "Largest Product = " << lrgProd << "\n";
     return 0;
 }
-
