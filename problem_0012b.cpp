@@ -39,7 +39,7 @@ Optimizations:
 #include <unordered_map>
 #include <chrono>
 
-const int LIMIT {250};
+const int LIMIT{250};
 std::vector<int> primes;
 std::unordered_map<int, int> divisor_cache;
 
@@ -54,9 +54,10 @@ void generatePrimes(int limit)
     isPrime[0] = isPrime[1] = false;
     for (int i = 2; i <= limit; ++i)
     {
-        if (isPrime[i]) {
+        if (isPrime[i])
+        {
             primes.push_back(i);
-            for (int j {i * 2}; j <= limit; j += i)
+            for (int j{i * 2}; j <= limit; j += i)
             {
                 isPrime[j] = false;
             }
@@ -72,16 +73,18 @@ void generatePrimes(int limit)
  */
 int countDivisors(int n)
 {
-    if (divisor_cache.count(n)) return divisor_cache[n];
+    if (divisor_cache.count(n))
+        return divisor_cache[n];
 
-    int original {n};
-    int count {1};
+    int original{n};
+    int count{1};
 
     for (int p : primes)
     {
-        if (p * p > n) break;
+        if (p * p > n)
+            break;
 
-        int exponent {0};
+        int exponent{0};
         while (n % p == 0)
         {
             n /= p;
@@ -90,7 +93,8 @@ int countDivisors(int n)
         count *= (exponent + 1);
     }
 
-    if (n > 1) count *= 2; // n is prime
+    if (n > 1)
+        count *= 2; // n is prime
 
     divisor_cache[original] = count;
     return count;
@@ -105,17 +109,18 @@ int countDivisors(int n)
 int findTriangle(int N)
 {
     generatePrimes(LIMIT);
-    int n {1};
+    int n{1};
     while (true)
     {
         int triangle = n * (n + 1) / 2;
 
         // Use the factorization trick: n and n+1 are coprime
-        int a {(n % 2 == 0) ? n / 2 : n};
-        int b {(n % 2 == 0) ? n + 1 : (n + 1) / 2};
+        int a{(n % 2 == 0) ? n / 2 : n};
+        int b{(n % 2 == 0) ? n + 1 : (n + 1) / 2};
 
-        int totalDivisors {countDivisors(a) * countDivisors(b)};
-        if (totalDivisors > N) return triangle;
+        int totalDivisors{countDivisors(a) * countDivisors(b)};
+        if (totalDivisors > N)
+            return triangle;
 
         ++n;
     }
@@ -123,14 +128,14 @@ int findTriangle(int N)
 
 int main()
 {
-    auto start {std::chrono::high_resolution_clock::now()};
+    auto start{std::chrono::high_resolution_clock::now()};
 
-    const int N {500};
-    int triangle {findTriangle(N)};
+    const int N{500};
+    int triangle{findTriangle(N)};
 
     std::cout << "First triangle number with over " << N << " divisors: " << triangle << "\n";
 
-    auto end {std::chrono::high_resolution_clock::now()};
+    auto end{std::chrono::high_resolution_clock::now()};
     std::chrono::duration<double> duration = end - start;
     std::cout << "Execution Time: " << duration.count() << " seconds\n";
 

@@ -13,33 +13,34 @@
  *
  */
 
-
 #include <iostream>
 #include <vector>
 #include <stdint.h>
 
-const uint64_t PRIME {600851475143};
+const uint64_t PRIME{600851475143};
 
 int main()
 {
 
-    uint64_t quo {PRIME};
+    uint64_t quo{PRIME};
     std::vector<uint64_t> factors;
 
     // Handle Factor 2
-    if(! (quo % 2))
+    if (!(quo % 2))
     {
         factors.push_back(2);
-        while (! (quo % 2)) quo /= 2 ;
+        while (!(quo % 2))
+            quo /= 2;
     }
 
     // Check odd factors from 3 to sqrt(quo)
-    for (uint64_t i {3}; i * i <= quo; i += 2)
+    for (uint64_t i{3}; i * i <= quo; i += 2)
     {
-        if(!(quo % i))
+        if (!(quo % i))
         {
             factors.push_back(i);
-            while(!(quo % i)) quo /= i;
+            while (!(quo % i))
+                quo /= i;
         }
     }
 

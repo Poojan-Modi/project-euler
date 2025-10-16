@@ -25,12 +25,15 @@ Code Complexity:
 
 bool isPrime(uint32_t n)
 {
-    if (n < 2) return false;
-    if (n == 2 || n == 3) return true;
-    if (n % 2 == 0 || n % 3 == 0) return false;
+    if (n < 2)
+        return false;
+    if (n == 2 || n == 3)
+        return true;
+    if (n % 2 == 0 || n % 3 == 0)
+        return false;
 
-    uint32_t limit {static_cast<uint32_t>(std::sqrt(n))};
-    for (uint32_t i {5}; i <= limit; i += 6)
+    uint32_t limit{static_cast<uint32_t>(std::sqrt(n))};
+    for (uint32_t i{5}; i <= limit; i += 6)
     {
         if (n % i == 0 || n % (i + 2) == 0)
             return false;
@@ -40,9 +43,9 @@ bool isPrime(uint32_t n)
 
 int main()
 {
-    const uint32_t TARGET {10001};
-    uint32_t count {2}; // 2 and 3 are already prime
-    uint32_t candidate {5};
+    const uint32_t TARGET{10001};
+    uint32_t count{2}; // 2 and 3 are already prime
+    uint32_t candidate{5};
 
     while (true)
     {

@@ -21,23 +21,22 @@ Space: O(n) for sieve-based approaches
 
 int main()
 {
-    std::vector<bool> isPrime(MAX,true);
+    std::vector<bool> isPrime(MAX, true);
     isPrime[0] = isPrime[1] = false;
 
-
-    for (uint64_t i {2}; i * i <= MAX; ++i)
+    for (uint64_t i{2}; i * i <= MAX; ++i)
     {
         if (isPrime[i])
         {
-            for (uint64_t j {i * i}; j <= MAX; j += i)
+            for (uint64_t j{i * i}; j <= MAX; j += i)
             {
                 isPrime[j] = false;
             }
         }
     }
 
-    uint64_t sum {0};
-    for (uint64_t i {2}; i <= MAX; ++i)
+    uint64_t sum{0};
+    for (uint64_t i{2}; i <= MAX; ++i)
     {
         if (isPrime[i])
         {
@@ -45,9 +44,7 @@ int main()
         }
     }
 
-    std::cout << "the sum of all primes < " << MAX <<" = " << sum << "\n";
+    std::cout << "the sum of all primes < " << MAX << " = " << sum << "\n";
 
     return 0;
 }
-
-

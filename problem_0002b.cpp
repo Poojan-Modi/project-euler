@@ -1,11 +1,11 @@
 #include <iostream>
 #include <cstdint>
 
-constexpr uint32_t MAX_VALUE {4000000}, F_1 {2}, F_2 {8};
+constexpr uint32_t MAX_VALUE{4000000}, F_1{2}, F_2{8};
 
 int main()
 {
-    uint32_t curr {F_2}, prev {F_1}, sumOfEvenFib {F_1 + F_2};
+    uint32_t curr{F_2}, prev{F_1}, sumOfEvenFib{F_1 + F_2};
 
     while (true)
     {

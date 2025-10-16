@@ -55,7 +55,7 @@ Tn = n * (n + 1) / 2
 int countDivisors(int n)
 {
     int count{0};
-    for (int i {1}; i * i <= n; ++i)
+    for (int i{1}; i * i <= n; ++i)
     {
         if (n % i == 0)
         {
@@ -64,7 +64,6 @@ int countDivisors(int n)
     }
     return count;
 }
-
 
 /*
  * Optimized divisor count for triangle numbers using coprime factorization
@@ -75,11 +74,10 @@ int countDivisors(int n)
 
 int countDivisorsTriangle(int n)
 {
-    int a {(n % 2 == 0) ? n / 2 : n};
-    int b {(n % 2 == 0) ? n + 1 : (n + 1) / 2};
+    int a{(n % 2 == 0) ? n / 2 : n};
+    int b{(n % 2 == 0) ? n + 1 : (n + 1) / 2};
     return countDivisors(a) * countDivisors(b);
 }
-
 
 /*
  * This Function finds the first triangle number with more divisors than the specified limit
@@ -89,11 +87,11 @@ int countDivisorsTriangle(int n)
  */
 long long findTriangle(int limit)
 {
-    int n {1};
+    int n{1};
     while (true)
     {
-        if(countDivisorsTriangle(n) > limit)
-            return static_cast<long long> (n) * (n + 1) / 2;
+        if (countDivisorsTriangle(n) > limit)
+            return static_cast<long long>(n) * (n + 1) / 2;
 
         ++n;
     }
@@ -102,14 +100,14 @@ long long findTriangle(int limit)
 
 int main()
 {
-    auto start {std::chrono::high_resolution_clock::now()};
+    auto start{std::chrono::high_resolution_clock::now()};
 
-    const int limit {500};
-    long long triangle {findTriangle(limit)};
+    const int limit{500};
+    long long triangle{findTriangle(limit)};
 
     std::cout << "First triangle number with over " << limit << " divisors: " << triangle << "\n";
 
-    auto end {std::chrono::high_resolution_clock::now()};
+    auto end{std::chrono::high_resolution_clock::now()};
     std::chrono::duration<double> duration = end - start;
     std::cout << "Exacution Time: " << duration.count() << " seconds\n";
     return 0;

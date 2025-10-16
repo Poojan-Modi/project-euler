@@ -22,21 +22,21 @@ Code Complexity:
 
 int main()
 {
-    std::vector<bool> isPrime(MAX_SIZE,true);
+    std::vector<bool> isPrime(MAX_SIZE, true);
 
     isPrime[0] = isPrime[1] = false;
 
-    for (uint64_t p {2}; p * p < MAX_SIZE; p++)
+    for (uint64_t p{2}; p * p < MAX_SIZE; p++)
     {
         if (isPrime[p])
         {
-            for (uint64_t i {p * p}; i < MAX_SIZE; i += p)
+            for (uint64_t i{p * p}; i < MAX_SIZE; i += p)
                 isPrime[i] = false;
         }
     }
 
-    uint64_t count {0}, p10001 {0};
-    for (uint64_t i {2}; i < MAX_SIZE; ++i)
+    uint64_t count{0}, p10001{0};
+    for (uint64_t i{2}; i < MAX_SIZE; ++i)
     {
         if (isPrime[i])
         {

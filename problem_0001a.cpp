@@ -1,15 +1,15 @@
 /*
-* Problem 1: Multiples of 3 or 5
-*
-* if we list all the natural numbers below 10 that are multiples of 3 or 5
-* {n∈N∣n<10 and (nmod3=0 or nmod5=0)} = {3,5,6,9}
-*
-* n∈N|n<1000 and (nmod3=0 or nmod5=0) ∑n = ?
-*
-* Solution: Using the formula of summation of n natural numbers
-* Time Complexity: O(1)
-* Space Complexity: O(1)
-*/
+ * Problem 1: Multiples of 3 or 5
+ *
+ * if we list all the natural numbers below 10 that are multiples of 3 or 5
+ * {n∈N∣n<10 and (nmod3=0 or nmod5=0)} = {3,5,6,9}
+ *
+ * n∈N|n<1000 and (nmod3=0 or nmod5=0) ∑n = ?
+ *
+ * Solution: Using the formula of summation of n natural numbers
+ * Time Complexity: O(1)
+ * Space Complexity: O(1)
+ */
 
 #include <iostream>
 
@@ -19,7 +19,7 @@
 
 int sumOfMultiples(int x)
 {
-    int n = (N -1) / x;
+    int n = (N - 1) / x;
     return x * n * (n + 1) / 2;
 }
 

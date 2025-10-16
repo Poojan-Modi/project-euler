@@ -13,7 +13,6 @@ Time: Depends on the algorithm used (e.g., Sieve of Eratosthenes is O(n log log 
 Space: O(n/2) for sieve-based approaches
 */
 
-
 #include <iostream>
 #include <vector>
 #include <cstdint>
@@ -23,21 +22,21 @@ int main()
 {
     // Only store odd numbers: index i reps numbers 2*i + 3
     std::vector<bool> isPrime((MAX - 1) / 2, true); // 2 is handled separetly
-    uint64_t sum {2};
+    uint64_t sum{2};
 
-    for (size_t i {0}; (i * i * 4 + 12 * i + 9) < MAX; ++i)
+    for (size_t i{0}; (i * i * 4 + 12 * i + 9) < MAX; ++i)
     {
         if (isPrime[i])
         {
-            uint64_t p = 2 *i + 3;
-            for (size_t j {(p * p -3) / 2}; j < isPrime.size(); j += p)
+            uint64_t p = 2 * i + 3;
+            for (size_t j{(p * p - 3) / 2}; j < isPrime.size(); j += p)
             {
                 isPrime[j] = false;
             }
         }
     }
 
-    for (size_t i {0}; i < isPrime.size(); ++i)
+    for (size_t i{0}; i < isPrime.size(); ++i)
     {
         if (isPrime[i])
         {
@@ -45,6 +44,6 @@ int main()
         }
     }
 
-    std::cout << "the sum of all primes < " << MAX <<" = " << sum << "\n";
+    std::cout << "the sum of all primes < " << MAX << " = " << sum << "\n";
     return 0;
 }

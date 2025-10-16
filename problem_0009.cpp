@@ -18,8 +18,6 @@ Code Complexity:
     Space: O(1)
 */
 
-
-
 #include <iostream>
 #include <cmath>
 
@@ -27,13 +25,13 @@ Code Complexity:
 
 int main()
 {
-    int a {0}, b {0}, c{0};
+    int a{0}, b{0}, c{0};
 
     // From Euclid's formula: a + b + c = 2m(m + n) = 1000
     // So we solve m(m + n) = 500
-    for (int m {2}; m < (TARGET /2); ++m)
+    for (int m{2}; m < (TARGET / 2); ++m)
     {
-        if (500 % m == 0 )
+        if (500 % m == 0)
         {
             int k = 500 / m;
             int n = k - m;
@@ -47,7 +45,6 @@ int main()
             }
         }
     }
-
 
     std::cout << "a = " << a << "\tb = " << b << "\tc = " << c << "\n";
     std::cout << "Product abc = " << a * b * c << "\n";

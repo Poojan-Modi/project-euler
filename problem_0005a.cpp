@@ -22,13 +22,13 @@
 std::vector<uint32_t> createPrimeSet(uint32_t k)
 {
     std::vector<bool> isPrime(k + 1, true);
-    std::vector<uint32_t> p {};
+    std::vector<uint32_t> p{};
 
     isPrime[0] = false;
     isPrime[1] = false;
 
     // Sieve of Eratosthenes: mark non-primes
-    for (int i {2}; i * i <= k; i++)
+    for (int i{2}; i * i <= k; i++)
     {
         if (isPrime[i])
         {
@@ -39,20 +39,21 @@ std::vector<uint32_t> createPrimeSet(uint32_t k)
     }
 
     // Collect all primes into vector p
-    for (uint32_t i {0}; i <= k; i++)
-        if (isPrime[i]) p.push_back(i);
+    for (uint32_t i{0}; i <= k; i++)
+        if (isPrime[i])
+            p.push_back(i);
 
     return p;
 }
 
 int main()
 {
-    const uint32_t k {20}; // Upper bound for divisibility
-    const uint32_t limit {(uint32_t)sqrt(k)}; // Used to optimize exponent calculation
-    uint64_t lcm {1}; // Resulting least common multiple
+    const uint32_t k{20};                    // Upper bound for divisibility
+    const uint32_t limit{(uint32_t)sqrt(k)}; // Used to optimize exponent calculation
+    uint64_t lcm{1};                         // Resulting least common multiple
 
     // Generate all primes ≤ k
-    std::vector<uint32_t> p {createPrimeSet(k)};
+    std::vector<uint32_t> p{createPrimeSet(k)};
 
     // For each prime, calculate the highest power ≤ k and multiply into lcm
     for (auto &p_i : p)
