@@ -34,8 +34,8 @@ Space: O(n²) for storing the grid
 #include <iostream>
 #include <chrono>
 
-constexpr int GRID_SIZE {20};
-constexpr int ADJ_COUNT {4};
+constexpr int GRID_SIZE{20};
+constexpr int ADJ_COUNT{4};
 
 long long product(int arr[GRID_SIZE][GRID_SIZE], int i, int j, int dx, int dy)
 {
@@ -79,11 +79,11 @@ int main()
         {20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54},
         {1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48}};
 
-    long long lrgProd {0}, hProd {0}, vProd {0}, dProdR {0}, dProdL {0};
+    long long lrgProd{0};
 
-    for (int i {0}; i < GRID_SIZE; ++i)
+    for (int i{0}; i < GRID_SIZE; ++i)
     {
-        for (int j {0}; j < GRID_SIZE; ++j)
+        for (int j{0}; j < GRID_SIZE; ++j)
         {
             if (j + ADJ_COUNT <= GRID_SIZE)
                 lrgProd = std::max(lrgProd, product(arr, i, j, 0, 1)); // horizontal
@@ -106,4 +106,3 @@ int main()
     std::cout << "Execution Time: " << duration.count() << " seconds\n";
     return 0;
 }
-
