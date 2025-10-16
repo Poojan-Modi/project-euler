@@ -42,7 +42,7 @@ Complexity:
 
 int main()
 {
-    std::string number {
+    std::string number{
         "73167176531330624919225119674426574742355349194934"
         "96983520312774506326239578318016984801869478851843"
         "85861560789112949495459501737958331952853208805511"
@@ -62,30 +62,28 @@ int main()
         "07198403850962455444362981230987879927244284909188"
         "84580156166097919133875499200524063689912560717606"
         "05886116467109405077541002256983155200055935729725"
-        "71636269561882670428252483600823257530420752963450"
-    };
+        "71636269561882670428252483600823257530420752963450"};
 
     uint64_t maxProd{0};
 
-    for (uint64_t i {0}; i <= (number.size() - W_SIZE); ++i)
+    for (uint64_t i{0}; i <= (number.size() - W_SIZE); ++i)
     {
         uint64_t prod{1};
         bool hasZero{false};
 
-        for (uint64_t j {0}; j < 13; ++j)
+        for (uint64_t j{0}; j < 13; ++j)
         {
             if (number[i + j] == 0)
             {
                 hasZero = true;
                 break;
             }
-            prod *= number[i + j] -'0';
+            prod *= number[i + j] - '0';
         }
-        if (!hasZero && prod > maxProd) maxProd = prod;
+        if (!hasZero && prod > maxProd)
+            maxProd = prod;
     }
-
 
     std::cout << "Maximum product of 13 adjacent digits: " << maxProd << "\n";
     return 0;
-
 }

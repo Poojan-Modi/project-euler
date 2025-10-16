@@ -16,8 +16,8 @@
 #define A 3
 #define B 5
 
- int main()
- {
+int main()
+{
     int sum{0};
     for (int i = 0; i < N; i++)
     {
@@ -29,4 +29,4 @@
 
     std::cout << "Sum of the multiples of " << A << " and " << B << " below " << N << ":\t" << sum << "\n";
     return 0;
- }
+}

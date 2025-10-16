@@ -10,7 +10,6 @@
  *
  */
 
-
 #include <iostream>
 #include <stdint.h>
 
@@ -21,7 +20,7 @@ bool isPalindrome(uint32_t n)
     while (n > 0)
     {
         reverse = reverse * 10 + n % 10;
-        n/= 10;
+        n /= 10;
     }
 
     return reverse == original;
@@ -29,25 +28,26 @@ bool isPalindrome(uint32_t n)
 
 bool is3Digits(uint32_t n)
 {
-    return n >=100 && n<= 999;
+    return n >= 100 && n <= 999;
 }
 
 int main()
 {
     // Max value = 999 * 999
     // least value = 100 *100
-    uint32_t x {0}, lrgPal {0};
+    uint32_t x{0}, lrgPal{0};
 
-    for (uint32_t i {999 * 999}; i > 100 * 100; i--)
+    for (uint32_t i{999 * 999}; i > 100 * 100; i--)
     {
-        if (i <= lrgPal) break;
+        if (i <= lrgPal)
+            break;
         if (isPalindrome(i))
         {
-            for (uint32_t j {999}; j > 100; j--)
+            for (uint32_t j{999}; j > 100; j--)
             {
-                 // Check if x the result of i / j is 3-digits in length
-                 if(!(i % j))
-                 {
+                // Check if x the result of i / j is 3-digits in length
+                if (!(i % j))
+                {
                     x = i / j;
                     lrgPal = is3Digits(x) ? i : lrgPal;
                     break;

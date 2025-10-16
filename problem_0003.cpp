@@ -17,29 +17,31 @@
 #include <bitset>
 #include <stdint.h>
 
-const uint32_t MAX {1U << 20}; // 2^20
-const uint64_t PRIME {600851475143};
+const uint32_t MAX{1U << 20}; // 2^20
+const uint64_t PRIME{600851475143};
 
 int main()
 {
 
-    uint64_t quo {PRIME};
-    std::bitset<MAX +1> primeFactors;
+    uint64_t quo{PRIME};
+    std::bitset<MAX + 1> primeFactors;
 
     // Handle Factor 2
-    if(! (quo % 2))
+    if (!(quo % 2))
     {
         primeFactors.set(2);
-        while (! (quo % 2)) quo /= 2 ;
+        while (!(quo % 2))
+            quo /= 2;
     }
 
     // Check odd factors from 3 to sqrt(quo)
-    for (uint64_t i {3}; i * i <= quo; i += 2)
+    for (uint64_t i{3}; i * i <= quo; i += 2)
     {
-        if(!(quo % i))
+        if (!(quo % i))
         {
             primeFactors.set(i);
-            while(!(quo % i)) quo /= i;
+            while (!(quo % i))
+                quo /= i;
         }
     }
 
@@ -49,16 +51,19 @@ int main()
         if (quo <= MAX)
         {
             primeFactors.set(quo);
-        } else {
+        }
+        else
+        {
             std::cout << quo << " ";
         }
     }
 
     // List Prime Factors
     std::cout << "Prime Factors of " << PRIME << " are: ";
-    for (uint32_t i {0}; i <= MAX; ++i)
+    for (uint32_t i{0}; i <= MAX; ++i)
     {
-        if (primeFactors.test(i)) std::cout << i << " ";
+        if (primeFactors.test(i))
+            std::cout << i << " ";
     }
 
     std::cout << "\n";

@@ -15,7 +15,6 @@
  *
  */
 
-
 #include <iostream>
 #include <cstdint>
 #define MAX_VALUE 4000000
@@ -24,14 +23,14 @@
 
 int main()
 {
-    uint32_t  curr{F_2}, prev{F_1}, temp{0}, sumOfEvenFib{F_2 + F_1};
+    uint32_t curr{F_2}, prev{F_1}, temp{0}, sumOfEvenFib{F_2 + F_1};
 
     while (true)
     {
         temp = curr;
         curr = 4 * curr + prev;
         if (curr > MAX_VALUE)
-        break;
+            break;
 
         sumOfEvenFib += curr;
         prev = temp;

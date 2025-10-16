@@ -35,6 +35,7 @@ Triangluar Numbers:
 
 #include <iostream>
 #include <cmath>
+#include <chrono>
 
 #define LIMIT 500
 
@@ -56,6 +57,8 @@ int countDivisors(long long num)
 
 int main()
 {
+    auto start{std::chrono::high_resolution_clock::now()};
+
     long long triangle{0};
     int n{1};
 
@@ -69,6 +72,8 @@ int main()
         }
         ++n;
     }
-
+    auto end{std::chrono::high_resolution_clock::now()};
+    std::chrono::duration<double> duration = end - start;
+    std::cout << "Execution Time: " << duration.count() << " seconds\n";
     return 0;
 }
