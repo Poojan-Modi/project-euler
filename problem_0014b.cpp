@@ -19,7 +19,6 @@ The sequence must be computed using integer arithmetic.
 You may cache intermediate results to improve performance.
 */
 #include <iostream>
-// #include <unordered_map>
 #include <vector>
 #include <chrono>
 #include <omp.h>
@@ -31,47 +30,61 @@ int main()
     // Start timing
     auto start {std::chrono::high_resolution_clock::now()};
 
-    // std::unordered_map<long long, int> collatzCache;
-    std::vector<int> collatzCache(MAX, 0);
+    // SHared gLobal cache
+    std::vector<int> g_collatzCache(MAX, 0);
+    g_collatzCache[1] = 1;
 
 
-    int longestLength {0};
-    int longestStart {0};
+    int g_longestLength {0};
+    int g_longestStart {0};
 
-
-    for (int i {1}; i < MAX; ++i)
+    #pragma omp parallel
     {
-        long long n {static_cast<long long> (i)};
-        int count {0};
+        int l_longestLength {0};
+        int l_longestStart {0};
 
-        while (n != 1)
+        #pragma omp for nowait
+        for (int i {2}; i < MAX; ++i)
         {
-            if (collatzCache.contains(n))
+            long long n {i};
+            int count {0};
+
+            while (n != 1 && (n >= MAX || g_collatzCache[n] == 0))
             {
-                count += collatzCache[n];
-                break;
+                n = (n % 2 == 0) ? n / 2 : 3 * n + 1;
+                ++count;
             }
-            if (n % 2 == 0)
-                n /= 2;
-            else
-                n = 3 * n + 1;
-            ++count;
+
+            if(n < MAX)
+                count += g_collatzCache[n];
+
+            // ✅ Store result in the global cache safely
+            #pragma omp critical
+            {
+                g_collatzCache[i] = count;
+            }
+
+            if (count > l_longestLength)
+            {
+                l_longestLength = count;
+                l_longestStart = i;
+            }
         }
 
-
-        collatzCache[i] = count;
-
-        if (count > longestLength)
+        // Update global best result
+        #pragma omp critical
         {
-            longestLength = count;
-            longestStart = i;
+            if (l_longestLength > g_longestLength)
+            {
+                g_longestLength = l_longestLength;
+                g_longestStart = l_longestStart;
+            }
         }
-
     }
 
 
-    std::cout << "Starting number under one million with the longest Collatz sequence: " << longestStart << "\n";
-    std::cout << "Length of sequence: " << longestLength << "\n";
+    std::cout << "Starting number under one million with the longest Collatz sequence: " << g_longestStart << "\n";
+    std::cout << "Length of sequence: " << g_longestLength << "\n";
 
 
     // End timing and display execution duration
