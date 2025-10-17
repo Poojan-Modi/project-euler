@@ -51,7 +51,7 @@ int main()
 
         // Dynamic scheduling helps load balence (long chains skewed near upper range)
         #pragma omp for schedule(dynamic, 1024) nowait
-        for (int i {2}; i < MAX; ++i)
+        for (int i {MAX / 2}; i < MAX; ++i)
         {
             uint64_t n = i;
             int count = 0;
